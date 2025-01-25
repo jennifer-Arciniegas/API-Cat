@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>gatos</title>
+</head>
+<body>
+    <main>
+        <div class="flex justify-center m-4 p-4">
+            <input type="number" placeholder="ingrese un numero" class="bg-rose-100 rounded-lg p-3 m-3">
+        </div>
+        <div class="flex justify-center"> 
+            <div id="imagenGato">
+            
+            </div>
+        </div>
+    
+    </main>
+    
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+        const buscador = document.querySelector("input");
+        const espacio = document.getElementById("imagenGato");
+       
+        buscador.addEventListener("input", () =>{
+            espacio.innerHTML= "";
+            const gato = buscador.value.trim();
+
+            const url = `https://http.cat/${gato}`;
+
+            if(gato === "") return;
+           
+                
+                    
+            const imagen = document.createElement("img");
+            imagen.src = url;
+            imagen.classList.add("rounded", "w-96", "h-80")
+            imagen.onerror = () =>{
+                espacio.innerHTML=` 
+                <div> No se encuentra la imagen </div>
+                `;
+            };
+            espacio.appendChild(imagen)
+       
+         
+
+        })
+        
+
+    })
+</script>
+</html>
